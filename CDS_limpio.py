@@ -99,7 +99,7 @@ spreads = [397,315,277,258,240]
 temp_spreads = [1,3,5,7,10]
 
 #Resolvemos
-sol = root(fun=CDS, x0=(0.0011, 0.00234, 0.00364, 0.00436, 0.00542),args=(spreads,temp_spreads,IR), method='hybr')
+sol = root(fun=CDS, x0=(0.001, 0.002, 0.0036, 0.004, 0.005),args=(spreads,temp_spreads,IR), method='hybr')
 hazar_final = [round(num, 5) for num in sol.x.tolist()]
 hazar_final  #obtenemos las hazar que haven que el CDS valga cero.
 
@@ -132,7 +132,7 @@ def probas_estandar_CDS(hazar_final,temp_spreads,tipo_probas):  #tipo_probas = 0
     else:
         return [1-p for p in proba_surv] 
 
-probas_estandar_CDS(hazar_final,temp_spreads,tipo_probas=1)
+probas_estandar_CDS(hazar_final,temp_spreads,tipo_probas=0)
 
 
 t_a_calcular_survivencia_o_default = 0.25  #es más facil manejar todo en años
@@ -194,6 +194,6 @@ def probas_CDS(hazar_final,temp_spreads,tipo_proba,t):
     else: #supervivencia
         return np.exp(-sum(integrated_hazard_rate))
 
-probas_CDS(hazar_final,temp_spreads,0,10)
+probas_CDS(hazar_final,temp_spreads,0,5)
 
 #[0.0011, 0.00234, 0.00364, 0.00436, 0.00542]
