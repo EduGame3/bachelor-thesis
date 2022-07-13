@@ -94,22 +94,26 @@ t_forwards = [0.9 + 0.05*np.random.normal(loc=0.0, scale=1.0) for i in range(0,n
 Ks = [0.7]*n_flujos
 tipo = [1]*n_flujos
 
-default = random.uniform(0,deltas[0]*n_flujos)  #en años
-flujos_restantes = []
-for dato in np.cumsum(deltas):
-    if dato > default:
-        flujos_restantes.append(dato)
-flujos_restantes
-n_flujos_restantes = n_flujos - len(flujos_restantes)
-Ns_n = Ns[n_flujos_restantes:]
-deltas_n=deltas[n_flujos_restantes:]
-Ks_n=Ks[n_flujos_restantes:]
-Ps_n=[0.08 + 0.05*np.random.normal(loc=0.0, scale=1.0) for i in range(0,n_flujos_restantes)]
-t_forwards_n=[0.08 + 0.05*np.random.normal(loc=0.0, scale=1.0) for i in range(0,n_flujos_restantes)]
-
+#Valuación
 len(IRS(n_flujos,Ns,Ps,deltas,t_forwards,Ks,tipo))
 IRS(n_flujos,Ns,Ps,deltas,t_forwards,Ks,tipo)
 
+
+#default = random.uniform(0,deltas[0]*n_flujos)  #en años
+#flujos_restantes = []
+#for dato in np.cumsum(deltas):
+#    if dato > default:
+#        flujos_restantes.append(dato)
+#flujos_restantes
+#n_flujos_restantes = n_flujos - len(flujos_restantes)
+#Ns_n = Ns[n_flujos_restantes:]
+#deltas_n=deltas[n_flujos_restantes:]
+#Ks_n=Ks[n_flujos_restantes:]
+#Ps_n=[0.08 + 0.05*np.random.normal(loc=0.0, scale=1.0) for i in range(0,n_flujos_restantes)]
+#t_forwards_n=[0.08 + 0.05*np.random.normal(loc=0.0, scale=1.0) for i in range(0,n_flujos_restantes)]
+
+
+#Exposición
 def expIRS(delta,n_flujos,default,Ns,Ps,deltas,t_forwards,Ks,tipo):
     flujos_restantes = []
     for dato in np.cumsum(deltas):
@@ -131,9 +135,6 @@ default
 exposicion = expIRS(delta=deltas[0],n_flujos=n_flujos,default=default,Ns=Ns,Ps=Ps,deltas=deltas,t_forwards=t_forwards,Ks=Ks,tipo=1)
 exposicion
 len(exposicion)
-
-a = [-2,-1,-0.1,-1,-2]    
-[a[item] for item in range(len(a)) if a[item]>0]
 
 #-------------------------------------- CMS --------------------------------------
 
